@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 
     # App
     'scrapers',
+    'api'
 ]
 
 MIDDLEWARE = [
@@ -124,5 +126,17 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DEFAULT_RENDERER_CLASSES = ("rest_framework.renderers.JSONRenderer","rest_framework.renderers.BrowsableAPIRenderer",)
+
+REST_FRAMEWORK = {
+    "DEFAULT_RENDERER_CLASSES": DEFAULT_RENDERER_CLASSES,
+    "DEFAULT_THROTTLE_RATES": {
+        "anon": "20/hour",
+        "otp_request": "1/5minute",
+    },
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
+    "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.NamespaceVersioning",
+}
 
 USE_DOCKER_SELENIUM_DRIVER = False
