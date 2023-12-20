@@ -26,7 +26,7 @@ function Map() {
     null
   );
 
-  const BASE_API = "http://localhost:8000";
+  const BASE_API = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const getCoffeeShopData = async () => {
