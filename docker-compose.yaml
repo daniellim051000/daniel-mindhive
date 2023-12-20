@@ -1,0 +1,49 @@
+version: '3.9'
+services:
+  db:
+    image: postgres
+    volumes:
+      - mindhive-db-data:/var/lib/postgresql/data
+    env_file:
+      - backend/.env
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    container_name: db
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "sh -c 'pg_isready -U postgres -d postgres'"
+        ]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  backend:
+    container_name: mindhive_backend
+    entrypoint: [ "/app/api/entrypoint.sh" ]
+    command: "python manage.py runserver 0.0.0.0:8000"
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend:/app/api
+    ports:
+      - "8000:8000"
+    env_file:
+      - backend/.env
+    restart: on-failure
+    depends_on:
+      db:
+        condition: service_healthy
+        
+volumes:
+  mindhive-db-data:
+
+
+networks:
+  db-net:
+    driver: bridge

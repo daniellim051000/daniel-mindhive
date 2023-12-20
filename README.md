@@ -4,6 +4,7 @@
 
 - [Introduction](#introduction)
 - [Installation](#installation)
+- [Usage](#Usage)
 - [Technologies Used](#technologies-used)
 
 ## Introduction
@@ -11,6 +12,15 @@
 This application is developed to scrape Zus Coffee Shop Info across every state in Malaysia.
 
 ## Installation
+
+1. Clone the repo: `git clone`
+2. Setup Environment Variable for backend: `cd backend && cp .env.sample .env`
+3. Setup Environment Variable for frontend: `cd frontend && cp .env.sample .env`
+4. Start Database in Docker: `docker-compose up db`
+5. Install Selemium ChromeDriver: `brew install --cask chromedriver`. More Installation: https://chromedriver.chromium.org/downloads
+6. Install NodeJS: `brew install node`
+
+## Usage
 
 Web Scrapping with Selemium:
 
