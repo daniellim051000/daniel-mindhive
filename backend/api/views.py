@@ -12,7 +12,7 @@ class CoffeeShopAPIViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, Gen
     pagination_class = DefaultPaginator
 
     def get_queryset(self):
-        return CoffeeShop.objects.filter()
+        return CoffeeShop.objects.filter(shop_coordinate_latitude__isnull=False)
 
     def get_object(self):
         return self.get_queryset().get(pk=self.kwargs["pk"])
