@@ -1,7 +1,5 @@
 # Daniel Mindhive Assessment
 
-Brief description or overview of the project.
-
 ## Table of Contents
 
 - [Introduction](#introduction)
