@@ -19,8 +19,7 @@ def get_coordinates(address):
                 # Extract latitude and longitude
                 latitude = location.latitude
                 longitude = location.longitude
-                print(
-                    f"Coordinates for '{partial_address}, {country}': Latitude {latitude}, Longitude {longitude}")
+                print(f"Coordinates successfully retrieved for '{partial_address}, {country}'.")
                 return latitude, longitude
             else:
                 print(f"No location found for '{partial_address}, {country}'")
